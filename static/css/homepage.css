@@ -1,0 +1,131 @@
+/* body
+{
+  height: 100%;
+} */
+html,body {
+ width: 100%;
+ height: 100%;
+ margin: 0;
+ padding: 0;
+ overflow-x: hidden;
+ 
+
+}
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.navtext {
+  color: rgb(232, 232, 235) !important;
+}
+.nav-pills .navbar-nav a:hover {
+  background-color: gray !important;
+}
+.nav-pills .active {
+  background-color: gray !important;
+}
+.dropdown .dropdown-menu .dropdown-item:hover {
+  background-color: orange !important;
+}
+.pipe {
+  color: white;
+  border-right: 2px solid grey;
+}
+.fontsize {
+  font-size: 50px;
+  color: rgb(252, 249, 249);
+}
+
+.fontsizeSub {
+  font-size: 30px;
+  color: rgb(252, 249, 249);
+}
+.blur{
+  backdrop-filter: blur(10px);
+}
+.btn-outline-primary:hover{
+  background-color: transparent;
+}
+.hand{
+  width: 40px;
+}
+.S3 .btn{
+  border-radius: 30px;
+}
+/* .edit .btn{
+  border-width: 0;
+} */
+.S5 .btn{
+  border-radius: 30px;
+}
+.icon{
+  width: 20px;
+  /* height: 30px; */
+}
+.langsize{
+  font-size: 16px;
+}
+.message{
+  width: 30px;
+}
+
+/* @media (min-width:576px){
+  .test{
+    margin: 0;
+    padding: 0;
+  }
+} */
+.search-height {
+  height: 20vh
+}
+
+
+.search {
+  position: relative;
+  /* box-shadow: 0 0 40px rgba(51, 51, 51, .1) */
+}
+
+.search input {
+  height: 60px;
+  text-indent: 25px;
+  /* border: 2px solid #d6d4d4 */
+}
+
+.search input:focus {
+  box-shadow: none;
+  border: 2px solid blue
+}
+
+.search .fa-search {
+  position: absolute;
+  top: 20px;
+  right: 16px;
+}
+
+.search button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  height: 50px;
+  width: 110px;
+  background: blue
+}
+
+@media (min-width:768px){
+.farmer-bg{
+  background:  linear-gradient(to right, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.52)),url(../images/farmer.jpg) no-repeat center top;
+  width: 100vw; 
+  height: 130vh;
+  
+}
+}
+@media (max-width:576px){
+  .farmer-bg{
+    background:  linear-gradient(to right, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.52)),url(../images/farmer.jpg) no-repeat;
+    background-size: cover;
+    width: 100vw; 
+    height: 130vh;    
+  }
+  }

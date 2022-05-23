@@ -1,0 +1,130 @@
+body,
+html {
+  height: 100%;
+}
+.bg {
+  background-color: rgb(83, 75, 75);
+}
+.m-nav {
+  display: inline !important;
+}
+
+.navtext {
+  color: rgb(232, 232, 235) !important;
+}
+.nav-pills .navbar-nav a:hover {
+  background-color: gray !important;
+}
+.nav-pills .active {
+  background-color: gray !important;
+}
+.vertical {
+  border-right: 2px solid red;
+  margin-left: 20px;
+}
+.line {
+  border-top: 1px solid black;
+}
+.body-font {
+  color: white;
+}
+.m-form {
+  margin-left: 19%;
+}
+.cform {
+  width: 80%;
+  height: 85vh;
+  margin-left: 18%;
+  margin-right: 30%;
+  background-color: white;
+}
+.mlabel {
+  margin-left: 40px;
+}
+.req {
+  color: red;
+}
+.form-control {
+  margin-left: 40px;
+  max-width: 80%;
+  border-color: black;
+}
+.btn-bg {
+  background-color: rgb(68, 38, 27);
+}
+.btn {
+  display: block;
+  width: 20vw;
+  height: 8vh;
+  margin-left: 30%;
+  border-radius: 30px;
+}
+.bg-footer {
+  background-color: #e3e3e3;
+}
+.btn-mc {
+  margin-top: 20%;
+}
+.csignup {
+  position: relative;
+  width: 70vw;
+  height: 80vh;
+  border: 1px solid lightgrey;
+}
+.img-signup {
+  position: relative;
+  backdrop-filter: blur(100%);
+  width: 20vw;
+  height: 80vh;
+  bottom: 0;
+  left: 0;
+  filter: blur(2px);
+
+  /* content: "";
+  position: relative;
+  width: 20vw;
+  height: 80vh; */
+  /* filter: blur(2px); */
+
+  /* -webkit-filter: blur(8px); */
+}
+
+.imgfit {
+  max-width: 100%;
+  max-height: 100%;
+}
+.text-pos {
+  position: absolute;
+  top: 51%;
+  left: 10.5%;
+  color: white;
+}
+.img-pos {
+  position: absolute;
+  /* backdrop-filter: blur(1px); */
+  top: 42%;
+  left: 10.5%;
+  width: 40px;
+}
+.acc {
+  /* padding-right: 70%; */
+  margin-left: 40%;
+}
+.join-heading {
+  margin-left: 30%;
+  font-size: 13px;
+}
+.btn-outline-primary {
+  border-color: brown;
+  color: black;
+}
+.btn-outline-primary:hover {
+  background-color: brown;
+}
+
+/* .navbar-nav > a {
+  border-right: 1px solid #000;
+}
+.navbar-nav > li:last-child {
+  border: none;
+} */

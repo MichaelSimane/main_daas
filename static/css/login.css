@@ -1,0 +1,187 @@
+body,
+html {
+  height: 100%;
+}
+/* * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+} */
+
+.bg {
+  background-color: rgb(83, 75, 75);
+}
+.m-nav {
+  display: inline !important;
+}
+
+.navtext {
+  color: rgb(232, 232, 235) !important;
+}
+.nav-pills .navbar-nav a:hover {
+  background-color: gray !important;
+}
+.nav-pills .active {
+  background-color: gray !important;
+}
+.vertical {
+  border-right: 2px solid red;
+  margin-left: 20px;
+}
+.line {
+  border-top: 1px solid black;
+}
+.body-font {
+  color: white;
+}
+.m-form {
+  margin-left: 19%;
+}
+.cform {
+  width: 80%;
+  height: 85vh;
+  margin-left: 18%;
+  margin-right: 30%;
+  background-color: white;
+}
+.mlabel {
+  margin-left: 40px;
+}
+.req {
+  color: red;
+}
+.form-control {
+  margin-left: 40px;
+  max-width: 85%;
+  border-color: black;
+}
+.btn-bg {
+  background-color: rgb(68, 38, 27);
+}
+.btn {
+  display: block;
+  width: 20vw;
+  height: 8vh;
+  margin-left: 30%;
+  border-radius: 30px;
+}
+.bg-footer {
+  background-color: #e3e3e3;
+}
+.btn-mc {
+  margin-top: 20%;
+}
+.clogin {
+  width: 75%;
+  height: 100vh;
+  border: 2px solid lightgrey;
+  box-shadow: 5px 5px gray;
+  border-radius: 20px;
+}
+.img-signup {
+  position: relative;
+  /* backdrop-filter: blur(2px); */
+  width: 20vw;
+  height: 79.1vh;
+  bottom: 0px;
+  left: 50%;
+  filter: blur(2px);
+
+  /* content: "";
+  position: relative;
+  width: 20vw;
+  height: 80vh; */
+  /* filter: blur(2px); */
+
+  /* -webkit-filter: blur(8px); */
+}
+.justify-content-center {
+  padding-left: 20px;
+}
+.back-img {
+  max-width: 20vw;
+  max-height: 79.1vh;
+}
+/* .img-fluid {
+  width: 100%;
+  height: 79.1vh;
+  filter: blur(2px);
+} */
+
+.imgfit {
+  max-width: 100%;
+  max-height: 100%;
+}
+.text-pos {
+  position: absolute;
+  top: 51%;
+  left: 10.5%;
+  color: white;
+}
+.daasicon .img-fluidi {
+  position: absolute;
+  /* backdrop-filter: blur(1px); */
+  top: 12rem;
+  left: 10%;
+  width: 5%;
+  height: 50px;
+}
+.daasicon .mt-6 {
+  position: absolute;
+  top: 15.5rem;
+  left: 10.5%;
+  color: grey;
+  font-size: 17px;
+}
+.heading1 .ms-6 {
+  margin-left: 4rem;
+}
+.acc {
+  /* padding-right: 70%; */
+  margin-left: 40%;
+}
+.join-heading {
+  font-size: 13px;
+}
+/* .navbar-nav > a {
+  border-right: 1px solid #000;
+}
+.navbar-nav > li:last-child {
+  border: none;
+} */
+.ms-6 {
+  margin-left: 20rem;
+}
+.ps-6 {
+  padding-left: 3.5rem;
+}
+.btn-outline-primary {
+  border-color: brown;
+  color: black;
+  width: 15rem;
+}
+.btn-outline-primary:hover {
+  background-color: brown;
+}
+.blur-effect {
+  filter: blur(3px);
+}
+
+.wrap {
+  width: 60px;
+  height: 50px;
+}
+.logo {
+  color: rgb(204, 188, 188);
+  font-size: 50px;
+}
+.blur {
+  backdrop-filter: blur(5px);
+}
+.userwrap {
+  width: 90px;
+  height: 70px;
+}
+.emailfont {
+  font-size: 25px;
+}

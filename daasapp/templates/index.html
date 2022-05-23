@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block body %}
+<div class="container main">
+    <div>
+        <h4>Generate a Report</h4>
+    </div>   
+    <div class="row">
+        <div class="col">
+            <h6>Select village</h6>
+            <form action="{% url 'generate' %}" method="post">
+                {% csrf_token %}
+                <select name="District" id="">
+                    {% for district in districts %}
+                        <option value="{{ district.Name }}">{{ district.Name }}</option>           
+                    {% endfor %}
+                   
+                    {% comment %} <option value="Debre Elias">Debre Elias</option>
+                    <option value="Yejubie">Yejubie</option>                 {% endcomment %}
+                </select>
+                <input type="submit">
+            </form>  
+        </div>
+        <div class="col search">
+            <h6>Search village</h6>
+            <input type="text" placeholder="search village">
+        </div>   
+        
+        <div class="data_main">
+            <h6 style="padding-bottom: 4%;">Select data of choice</h6>
+            <div class="data">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Sowing date
+                    </label>
+                  </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Harvesting date 
+                    </label>
+                </div>
+            </div>
+            <div class="data">            
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Fertilizer Recommendation
+                    </label>
+                  </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Pesticide Recommendation
+                    </label>
+                </div>
+            </div>        
+        </div>
+        
+    </div>    
+    
+</div>
+{% endblock %}
