@@ -7,26 +7,16 @@
         <h4>Generate a Report</h4>
     </div>   
     <div class="row">
+        <form action="{% url 'generate' %}" method="post">
+            {% csrf_token %}
         <div class="col">
-            <h6>Select village</h6>
-            <form action="{% url 'generate' %}" method="post">
-                {% csrf_token %}
+            <h6>Select village</h6>            
                 <select name="District" id="">
                     {% for district in districts %}
                         <option value="{{ district.Name }}">{{ district.Name }}</option>           
-                    {% endfor %}
-                   
-                    {% comment %} <option value="Debre Elias">Debre Elias</option>
-                    <option value="Yejubie">Yejubie</option>                 {% endcomment %}
-                </select>
-                <input type="submit">
-            </form>  
-        </div>
-        <div class="col search">
-            <h6>Search village</h6>
-            <input type="text" placeholder="search village">
-        </div>   
-        
+                    {% endfor %}   
+                </select>          
+        </div>        
         <div class="data_main">
             <h6 style="padding-bottom: 4%;">Select data of choice</h6>
             <div class="data">
@@ -56,7 +46,9 @@
                         Pesticide Recommendation
                     </label>
                 </div>
-            </div>        
+            </div> 
+            <input type="submit">
+        </form>         
         </div>
         
     </div>    
