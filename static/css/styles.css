@@ -282,3 +282,7 @@ fieldset {
     display: none;
     align-self: center;
 }
+
+.chatpage{
+    margin: 120px;
+}

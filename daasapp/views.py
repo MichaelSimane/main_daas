@@ -3,8 +3,10 @@ from urllib import response
 from django.shortcuts import render, redirect
 import requests
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 from django.urls import reverse
 import datetime
+import json
 # Create your views here.
 date = datetime.datetime.now()
 def generate(request):    
@@ -49,7 +51,35 @@ def Homepage(request):
     return render(request, "homepage.html")    
 
 def chat(request):
-    return render(request, "chat.html")
+    posts = requests.get("http://127.0.0.1:8080/dbapi/postmessage")
+    replys = requests.get("http://127.0.0.1:8080/dbapi/replymessage")
+    if request.method == "POST":
+        message =request.POST.get('comment')
+        # comment = request.POST['comment'] 
+        # reply =request.POST.get('reply')      
+        # reply_comment = request.POST['reply']
+        print(message)
+        data = {
+            "user":1,
+            "message":message
+        }
+        value1 = json.dumps(data)
+
+        value2 = {
+            "PostMessage": 2,
+            "reply": message,            
+        }
+        requests.post("http://127.0.0.1:8080/dbapi/postmessage", data=value1) 
+        # requests.post("http://127.0.0.1:8080/dbapi/replymessage", data=value2)      
+        print(requests.post("http://127.0.0.1:8080/dbapi/postmessage", data=data) )
+        messages.success(request, "Your comment has been posted successfully")
+        
+        return redirect(chat)
+    # return redirect(f"/blog/{post.slug}")
+    return render(request, "chat.html", {
+            "posts": posts.json,
+            "replys": replys.json
+        })
 
 def contact(request):
     return render(request, "contact.html")
