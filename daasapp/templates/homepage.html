@@ -37,13 +37,16 @@
           <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto ">
               <li class="nav-item ps-3 mb-1">
-                <a class="nav-link navtext " href="javascript:void(0)">Community <!--<span class="vertical"></span>--></a>
+                <a class="nav-link navtext " href="{% url 'generate' %}">Select District <!--<span class="vertical"></span>--></a>
+              </li>
+              <li class="nav-item ps-3 mb-1">
+                <a class="nav-link navtext " href="{% url 'chat' %}">Community <!--<span class="vertical"></span>--></a>
               </li>
               <li class="nav-item ps-3 mb-1">
                 <a class="nav-link navtext " href="javascript:void(0)">FAQs<!--<span class="vertical"></span>--></a>
               </li>
               <li class="nav-item ps-3 mb-1">
-                <a class="nav-link navtext" href="javascript:void(0)">Commentary <!--<span class="vertical"></span>--></a>
+                <a class="nav-link navtext" href="{% url 'contact' %}">Contact Us <!--<span class="vertical"></span>--></a>
               </li>              
             </ul> 
             <!-- <ul class="nav nav-tabs justify-content-end" id="right">

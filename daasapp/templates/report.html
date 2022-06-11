@@ -10,41 +10,36 @@
     <div class="data_main">                
         <div class="data_report">
             <div class="form-check Report_result">                        
-                <label class="form-check-label" for="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault" style="font-size: 20px;">
                     Sowing date:
                 </label>
                 <div><output>{{ sowing }}</output></div>
                 
             </div>
             <div class="form-check Report_result">                        
-                <label class="form-check-label" for="flexCheckChecked">
+                <label class="form-check-label" for="flexCheckChecked" style="font-size: 20px;">
                     Harvesting date: 
                 </label>
                 <div> <output>{{ harvesting }}</output></div>
                                        
             </div>
         </div>
-        {% comment %} <div class="data_report">            
+        <div class="data_report" style="margin-top: 20px">            
+            
             <div class="form-check Report_result">                        
-                <label class="form-check-label" for="flexCheckDefault">
-                    Fertilizer Recommendation
-                </label>
-                <output>hello world</output>
-                </div>
-            <div class="form-check Report_result">                        
-                <label class="form-check-label" for="flexCheckChecked">
+                <label class="form-check-label" for="flexCheckChecked" style="font-size: 20px;">
                     Pesticide Recommendation
                 </label>
-                <output>hello world</output>
+                <div><output>hello world</output></div>                
             </div>
-        </div>  {% endcomment %}
+        </div> 
         
-        <div class="data_report">
+        <div class="data_report" style="margin-top: 20px">
             <div class="d-flex justify-content-end pt-3">   
-                <button type="button" class="btn btn-danger btn-lg">Generate Report</button>                
+                <button type="button" class="btn btn-primary ms-2">Generate Report</button>                
             </div> 
             <div class="d-flex justify-content-end pt-3">
-                <button class="generate_btn" type="button" class="btn btn-lg ms-2">Submit form</button>
+                <button type="button" class="btn btn-success ms-2">Submit form</button>
             </div>
         </div>
               
