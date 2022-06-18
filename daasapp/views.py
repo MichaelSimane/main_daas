@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.urls import reverse
 import datetime
+from dateutil.relativedelta import relativedelta
 import json
 import folium
 import geocoder
@@ -31,13 +32,34 @@ def generate(request):
         print(district)
         response = requests.post("http://127.0.0.1:8080/api/" + district + '/', data=value)
         harvest_response = requests.post("http://127.0.0.1:8080/api/harvest_" + district + '/', data=value2)
+        locust_response = requests.post("http://127.0.0.1:8080/api/locust_" + district + '/', data=value)
         print(response.text, harvest_response.text)
         
-        return redirect(report, sowing=response.text, harvesting=harvest_response.text, district=district)
+        return redirect(report, sowing=response.text, harvesting=harvest_response.text, locust=locust_response.text, district=district)
 
     return render(request, "index.html", {
         "districts": districts.json
     })
+
+def detailReport(request, year, month, district, sowing, harvesting, locust):      
+    print(district)        
+    soil_response = requests.get("http://127.0.0.1:8080/dbapi/soildetail/" + district)
+    weather_response = requests.get(f"http://127.0.0.1:8080/dbapi/WeatherDetailReportApi/{year}/{month}/{district}")
+    # print(response.text, harvest_response.text)
+    soil = json.loads(soil_response.text)
+    print(soil['type'])
+    four_months = date.today() + relativedelta(months=+4)
+    print(four_months.strftime('%B'))
+    return render(request, "detailReport.html", {
+        "soil": soil["type"],
+        "ph": soil["ph"],
+        "district": district,
+        "sowing": sowing,
+        "harvesting": harvesting,
+        "month": four_months.strftime('%B'),
+        "locust": locust,
+        "weathers": weather_response.json,
+    })  
 
 def Homepage(request):    
     return render(request, "homepage.html")    
@@ -89,7 +111,7 @@ def contact(request):
 def login(request):
     return render(request, "login.html")
 
-def report(request, sowing, harvesting, district):
+def report(request, sowing, harvesting, locust, district):
     tmean = float(requests.get(f"http://127.0.0.1:8080/dbapi/weatherdetail/{date.year}/{date.month}/{date.day}/{district}").text)
     print(sowing, harvesting, tmean)  
     sow = None
@@ -104,9 +126,18 @@ def report(request, sowing, harvesting, district):
     else:
         harvest = False
     print(harvest)
+    if locust == '[true]':
+        lct = True
+    else:
+        lct = False
+    print(harvest)
     return render(request, "report.html", {
             "sowing": sow,
-            "harvesting": harvest
+            "harvesting": harvest,
+            "year": date.year,
+            "month": date.month,
+            "locust": lct,
+            "district": district
         })   
 
 def signup(request):

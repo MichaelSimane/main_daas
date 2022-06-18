@@ -51,6 +51,9 @@ html,body {
 .hand{
   width: 40px;
 }
+.s3 {
+  width: 100%;  
+}
 .S3 .btn{
   border-radius: 30px;
 }
@@ -116,8 +119,8 @@ html,body {
 @media (min-width:768px){
 .farmer-bg{
   background:  linear-gradient(to right, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.52)),url(../images/farmer.jpg) no-repeat center top;
-  width: 100vw; 
-  height: 130vh;
+  width: 100%; 
+  height: 100vh;
   
 }
 }
@@ -125,7 +128,7 @@ html,body {
   .farmer-bg{
     background:  linear-gradient(to right, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.52)),url(../images/farmer.jpg) no-repeat;
     background-size: cover;
-    width: 100vw; 
+    width: 100%; 
     height: 130vh;    
   }
   }

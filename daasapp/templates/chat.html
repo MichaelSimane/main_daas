@@ -4,57 +4,7 @@
 
 {% block body %}
 {% load humanize %}
-<!-- {% comment %} 
-<div class="container">
-    <div class="chat_header">
-        <div>
-            <h3>See what is going on in the DAAS community</h3>
-        </div>
-
-        <div class="chat_search">
-            <form action="">
-                <input type="text" class="form-control input-text" placeholder="Search products...." aria-label="Recipient's username" aria-describedby="basic-addon2" style="border: none;">
-                <div class="input-group-append"> 
-                    <button class="btn btn-lg" style="border: none;" type="button">
-                        <i class="fa fa-search"></i>
-                    </button> 
-                </div>
-            </form>         
-            
-        </div>
-    </div>
-    <div class="p-5"> 
-        <div class="rounded-circle border d-flex justify-content-center align-items-center" style="width:60px;height:60px" alt="Avatar">
-            <i class="fas fa-user-alt fa-3x text-info"></i>
-        </div>  
-    </div>
-    
-    <div class="p-5"> 
-        <div class="rounded-circle border d-flex justify-content-center align-items-center" style="width:60px;height:60px" alt="Avatar">
-            <i class="fas fa-user-alt fa-3x text-info"></i>
-        </div>  
-    </div>
-    
-    <div class="p-5"> 
-        <div class="rounded-circle border d-flex justify-content-center align-items-center" style="width:60px;height:60px" alt="Avatar">
-            <i class="fas fa-user-alt fa-3x text-info"></i>
-        </div>  
-    </div>
-    
-    <div class="p-5"> 
-        <div class="rounded-circle border d-flex justify-content-center align-items-center" style="width:60px;height:60px" alt="Avatar">
-            <i class="fas fa-user-alt fa-3x text-info"></i>
-        </div>  
-    </div>
-    
-    <div class="p-5"> 
-        <div class="rounded-circle border d-flex justify-content-center align-items-center" style="width:60px;height:60px" alt="Avatar">
-            <i class="fas fa-user-alt fa-3x text-info"></i>
-        </div>  
-    </div>
-    
-</div> {% endcomment %} -->
-<div class="chatpage">
+<div class="container chatpage" style="background-color: white; width: 100%; height: 650px; padding: 30px;">
     
     <form action="{% url 'chat' %}" method="post">
         {% csrf_token %}
@@ -73,12 +23,11 @@
             <div class="col-md-11 "> 
                 <b> mike </b> <span class="badge badge-secondary ">{{ post.date| naturaltime }}</span>
                 <div>{{ post.message }}</div>
-                <div class="reply mx-0">
-            
-                    <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#replyBox{{comment.sno}}" aria-expanded="false" aria-controls="replyBox{{comment.sno}}">
+                <div class="reply mx-0">            
+                    <button class="btn btn-sm btn-primary" onclick="reply()" id="reply{{post.id}}" type="button" data-toggle="collapse" data-target="#replyBox{{comment.sno}}" aria-expanded="false" aria-controls="replyBox{{comment.sno}}">
                         Reply
                     </button>
-                    <div class="collapse" id="replyBox{{comment.sno}}">
+                    <div class="collapse" id="replyBox">
                         <div class="card card-body my-2">
                             <form action="{% url 'chat' %}" method="post">
                                 {% csrf_token %}
@@ -100,5 +49,28 @@
     {% endfor %}
 </div>
 {% endblock %}
+
 {% block script%}
+{% comment %} var replybtn = document.getElementByClassName("btn");
+replybtn.id
+document.getElementById("myBtn").onclick = function() {myFunction()}; {% endcomment %}
+function reply(){
+    var replybox = document.getElementById('replyBox');
+    console.log(replybox.className);
+    if (replybox.className  == "collapse"){
+        replybox.className  = 'uncollapse';
+    }else if(replybox.className  == "uncollapse"){
+        replybox.className  = 'collapse'
+    } 
+}
+{% comment %} 
+document.addEventListener("click", event => {
+    const element = event.target;
+    if (element.className  == "collapse"){
+        element.className  = 'uncollapse';
+    }else if(element.className  == "uncollapse"){
+        element.className  = 'collapse'
+    } 
+}); {% endcomment %}
+
 {% endblock %}

@@ -1,11 +1,13 @@
+html,
+body {
+   margin:0;
+   padding:0;
+   height:100%;
+}
 .nav {
     display: flex;
     justify-content: space-between;
     background-color: lightgray;
-}
-body {    
-    margin: 0;
-    padding: 0;
 }
 .fa {
     padding: 20px;
@@ -55,11 +57,12 @@ body {
 .harvest {
     margin-left: 10px;
 }
-footer {    
-    left:0px;
-    bottom:0;    
-    width:100%;
-}
+/* #footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:auto;   /* Height of the footer */  
+} */
 
 .search > input {
     flex: 1;
@@ -237,9 +240,13 @@ fieldset {
 :-ms-input-placeholder {
     color: #888
 }
-
+footer {
+    margin-bottom: auto;
+}
 /* chat page */
-
+.chatpage {
+    backround-color: white;
+}
 .chat_header {
     padding: 3%;
     text-align: center;

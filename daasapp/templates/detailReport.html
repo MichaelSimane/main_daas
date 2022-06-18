@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block body %}
+<div class="container main">
+    <div>
+        <h1><label class="form-check-label" for="flexCheckDefault" style="font-size: 30px;">Detail Report for {{ district }}</label></h1>
+    </div>  
+            
+    <div class="data_main">                
+        <div class="data_report">        
+            
+            <div class="form-check Report_result"> 
+                {% if sowing == "True" %}
+                    <div>
+                        <label class="form-check-label" for="flexCheckDefault" style="font-size: 20px;">
+                            The Weather now is best for sowing and if you sow now you must harvest in {{month}} which is in 4 months
+                        </label>                        
+                    </div>
+                {% endif %}
+                <div>
+                    <label class="form-check-label" for="flexCheckDefault" style="font-size: 20px;">
+                        Weather best for sowing right now - {{sowing}}
+                    </label>
+                    
+                </div>
+                <div>
+                    <label class="form-check-label" for="flexCheckDefault" style="font-size: 20px;">
+                        Weather best for harvesting right now - {{harvesting}}
+                    </label>
+                    
+                </div>
+                <div>
+                    <label class="form-check-label" for="flexCheckDefault" style="font-size: 20px;">
+                        Weather best for Locust right now - {{locust}}
+                    </label>
+                     
+                </div>
+                <div>
+                    <label class="form-check-label" for="flexCheckDefault" style="font-size: 25px; margin-top: 20px"><h3>Soil data</h3></label>
+                </div>  
+                <div>
+                    <label class="form-check-label" for="flexCheckDefault" style="font-size: 20px;">
+                        The soil type of {{district}} is {{ soil }}
+                    </label>
+                    
+                </div>                    
+                
+                <div>
+                    <label class="form-check-label" for="flexCheckDefault" style="font-size: 20px;">
+                        The soil ph of {{district}} is {{ ph }}
+                    </label>
+                    
+                </div>     
+                
+                
+            </div>
+        </div>         
+
+        <label class="form-check-label" for="flexCheckDefault" style="font-size: 25px; margin-top: 20px"><h3>Weather data for the next two months</h3></label>
+              
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Year</th>
+                    <th scope="col">Month</th>
+                    <th scope="col">Day</th>
+                    <th scope="col">Minimum Temperature</th>
+                    <th scope="col">Maximum Temperature</th>
+                    <th scope="col">Rain</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for weather in weathers %}
+                    <tr>                    
+                        <td>{{ weather.year }}</td>
+                        <td>{{ weather.month }}</td>
+                        <td>{{ weather.day }}</td>
+                        <td>{{ weather.tmin }}</td>
+                        <td>{{ weather.tmax }}</td>
+                        <td>{{ weather.rain }}</td>
+                    </tr>           
+                {% endfor %}  
+             
+            </tbody>
+          </table>
+    </div>  
+       
+        
+   
+    
+</div>
+{% endblock %}
