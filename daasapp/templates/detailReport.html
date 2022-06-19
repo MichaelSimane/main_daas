@@ -1,13 +1,15 @@
 {% extends "layout.html" %}
+{% load i18n %}
 {% load static %}
 
 {% block body %}
-<div class="container main">
+{% trans "let's translate this" %}
+<div class="container main" style="padding: 15px;">
     <div>
         <h1><label class="form-check-label" for="flexCheckDefault" style="font-size: 30px;">Detail Report for {{ district }}</label></h1>
     </div>  
             
-    <div class="data_main">                
+    <div class="data_main2">                
         <div class="data_report">        
             
             <div class="form-check Report_result"> 
@@ -19,36 +21,51 @@
                     </div>
                 {% endif %}
                 <div>
-                    <label class="form-check-label" for="flexCheckDefault" style="font-size: 20px;">
-                        Weather best for sowing right now - {{sowing}}
-                    </label>
-                    
+                    {% if sowing == "True" %}
+                        <label class="form-check-label" for="flexCheckDefault" style="font-size: 20px;">
+                            Weather best for sowing right now - Yes
+                        </label>
+                    {% elif sowing == "False"%}
+                        <label class="form-check-label" for="flexCheckDefault" style="font-size: 20px;">
+                            Weather best for sowing right now - No
+                        </label>
+                    {% endif %}
                 </div>
                 <div>
-                    <label class="form-check-label" for="flexCheckDefault" style="font-size: 20px;">
-                        Weather best for harvesting right now - {{harvesting}}
-                    </label>
-                    
+                    {% if harvesting == "True" %}
+                        <label class="form-check-label" for="flexCheckDefault" style="font-size: 20px;">
+                            Weather best for harvesting right now - Yes
+                        </label>
+                    {% elif harvesting == "False"%}
+                        <label class="form-check-label" for="flexCheckDefault" style="font-size: 20px;">
+                            Weather best for harvesting right now - No
+                        </label>
+                    {% endif %} 
                 </div>
                 <div>
-                    <label class="form-check-label" for="flexCheckDefault" style="font-size: 20px;">
-                        Weather best for Locust right now - {{locust}}
-                    </label>
-                     
+                    {% if locust == "True" %}
+                        <label class="form-check-label" for="flexCheckDefault" style="font-size: 20px;">
+                            Weather best for Locust to attack right now - Yes
+                        </label>
+                    {% elif locust == "False "%}
+                        <label class="form-check-label" for="flexCheckDefault" style="font-size: 20px;">
+                            Weather best for Locust to attack right now - No
+                        </label>
+                    {% endif %}  
                 </div>
                 <div>
                     <label class="form-check-label" for="flexCheckDefault" style="font-size: 25px; margin-top: 20px"><h3>Soil data</h3></label>
                 </div>  
                 <div>
                     <label class="form-check-label" for="flexCheckDefault" style="font-size: 20px;">
-                        The soil type of {{district}} is {{ soil }}
+                        Type - {{ soil }}
                     </label>
                     
                 </div>                    
                 
                 <div>
                     <label class="form-check-label" for="flexCheckDefault" style="font-size: 20px;">
-                        The soil ph of {{district}} is {{ ph }}
+                        pH - {{ ph }}
                     </label>
                     
                 </div>     
