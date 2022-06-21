@@ -1,7 +1,118 @@
 {% extends "layout.html" %}
 {% load static %}
+{% block style %}
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
+    body{
+        width: 100%;
+        height: auto;
+        overflow-x: hidden;
+        {% comment %} display: flex; {% endcomment %}
+        align-items: center;
+        justify-content: center;
+        background:linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba( 0, 0, 0, 0.2)),url(../images/report.jpg) no-repeat center;
+        /* width: 100vw; */
+        background-size: cover;
+        height: 100vh;
+    }
+    .nav-pills .active {
+        background-color: gray !important;
+    }
+        .report-1{
+        height: 250px;
+        width: 500px;
+        display: block;
+        align-items: center;
+        justify-content: center;
+        border-radius: 30px;
+        box-shadow: 15px 7px 14px 1px rgba(0,0,0,0.75);
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba( 0, 0, 0, 0.3));
+        }
+        .report-2{
+        height: 500px;
+        width: 800px;
+        border-radius: 20px;
+        display: none;
+        box-shadow: 15px 7px 14px 1px rgba(0,0,0,0.75);
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba( 0, 0, 0, 0.4));
+        }
+        .report-2 .btn{
+        border-radius: 20px;
+        }
 
-{% block body %}
+        .report-final{
+        height: 500px;
+        width: 950px;
+        /* border: 1px solid rgb(156, 156, 156); */
+        border-radius: 20px;
+        display: none;
+        box-shadow: 15px 7px 14px 1px rgba(0,0,0,0.75);
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba( 0, 0, 0, 0.4));
+
+        }
+        .village{
+        height: 30px;
+        width: 300px;
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba( 0, 0, 0, 0.3));;
+        border: 0.3px solid  rgb(156, 156, 156);
+
+        }
+        .result-container{
+        height: 100px;
+        width: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border:1px solid  rgb(182, 182, 182) ;
+        border-radius: 20px;
+        background-color: transparent;
+        }
+        /* .reportf .btn{
+        border-radius: 10px;
+        } */
+        .select_box{
+        width: 200px;
+        overflow: hidden;
+        /* border: 1px solid #000; */
+        position: relative;
+        /* padding: 10px 0; */
+        }
+        .select_box:after{
+        width: 0; 
+        height: 0; 
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid white;
+        position: relative;
+        outline: none;
+        bottom: 15px;
+        left: 85%;
+        content: "";
+        z-index: 98;
+        }
+        .select_box select{
+        width: 220px;
+        border: 0;
+        position: relative;
+        z-index: 99;
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba( 0, 0, 0, 0.4));
+        }
+        .form-select:focus {
+        border: none !important; 
+        outline: none !important;
+        box-shadow: none !important;
+        }
+        .view{
+        display: block;
+        }
+</style>
+{% endblock %}
+
+{% block body2 %}
 {% comment %} <div class="container main">
     <div>
         <h4>Generate a Report</h4>
@@ -55,7 +166,7 @@
     
 </div> {% endcomment %}
 
-<section id="Report-2" class="report-2" style="display: block;">
+<section id="Report-2" class="report-2" style="display: block; margin: auto; margin-top: 10%; margin-bottom: 10%;">
     <div class="container">
       <div class="text-center text-light mt-5">
             <h4>Find out available village information with the aid of the advisor</h4>
@@ -78,7 +189,7 @@
             <div class="row ps-5 pt-4">
                 <div class="col-6   text-light">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="sow">
+                        <input class="form-check-input" type="checkbox" value="" id="sow" checked>
                         <label class="form-check-label" for="sow">
                           Sowing Date
                         </label>
@@ -86,7 +197,7 @@
                 </div>
                 <div class="col-6   text-light">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="harvest">
+                        <input class="form-check-input" type="checkbox" value="" id="harvest" checked>
                         <label class="form-check-label" for="harvest">
                           Harvesting Date
                         </label>
@@ -96,7 +207,7 @@
             <div class="row ps-5 pt-4">                
                 <div class="col-6   text-light">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="pest">
+                        <input class="form-check-input" type="checkbox" value="" id="pest" checked>
                         <label class="form-check-label" for="pest">
                           Pesticide Recommendation
                         </label>

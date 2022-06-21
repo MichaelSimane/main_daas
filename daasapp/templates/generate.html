@@ -1,0 +1,314 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
+    <!-- <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    rel="stylesheet"> -->
+    <!-- Google Fonts -->
+    <!-- <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"> -->
+    <!-- MDB -->
+    <!-- <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.css"
+    rel="stylesheet"> -->
+    
+    <link href="{%static 'css/main.min.css' %}" rel="stylesheet">
+    <link href="{%static 'css/report-final.css' %}" rel="stylesheet">
+    <!-- <link href="{%static 'css/report2.css' %}" rel="stylesheet"> -->
+    <link rel="icon" href="{% static 'image/DAASico.png' %}" sizes="16x16" type="image/png">
+    <title>Report Generation-DAAS</title>
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba( 0, 0, 0, 0.2)),url(../images/report.jpg) no-repeat center;
+    /* width: 100vw; */
+    background-size: cover;
+    height: 100vh;
+}
+.nav-pills .active {
+    background-color: gray !important;
+  }
+  .report-1{
+    height: 250px;
+    width: 500px;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    box-shadow: 15px 7px 14px 1px rgba(0,0,0,0.75);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba( 0, 0, 0, 0.3));
+}
+.report-2{
+    height: 500px;
+    width: 800px;
+    border-radius: 20px;
+    display: none;
+    box-shadow: 15px 7px 14px 1px rgba(0,0,0,0.75);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba( 0, 0, 0, 0.4));
+}
+.report-2 .btn{
+    border-radius: 20px;
+}
+
+.report-final{
+    height: 500px;
+    width: 950px;
+    /* border: 1px solid rgb(156, 156, 156); */
+    border-radius: 20px;
+    display: none;
+    box-shadow: 15px 7px 14px 1px rgba(0,0,0,0.75);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba( 0, 0, 0, 0.4));
+    
+}
+.village{
+    height: 30px;
+    width: 300px;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba( 0, 0, 0, 0.3));;
+    border: 0.3px solid  rgb(156, 156, 156);
+    
+}
+.result-container{
+    height: 100px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:1px solid  rgb(182, 182, 182) ;
+    border-radius: 20px;
+    background-color: transparent;
+}
+/* .reportf .btn{
+    border-radius: 10px;
+} */
+.select_box{
+    width: 200px;
+    overflow: hidden;
+    /* border: 1px solid #000; */
+    position: relative;
+    /* padding: 10px 0; */
+}
+  .select_box:after{
+    width: 0; 
+    height: 0; 
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid white;
+    position: relative;
+    outline: none;
+    bottom: 15px;
+    left: 85%;
+    content: "";
+    z-index: 98;
+}
+  .select_box select{
+    width: 220px;
+    border: 0;
+    position: relative;
+    z-index: 99;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba( 0, 0, 0, 0.4));
+}
+  .form-select:focus {
+    border: none !important; 
+    outline: none !important;
+    box-shadow: none !important;
+}
+.view{
+    display: block;
+}
+    </style>
+</head>
+<body class="bg-primary">
+    <nav class="navbar navbar-expand-sm nav-pills fixed-top bg-dark navbar-dark"  style="height: 48px;">
+        <div class="container-fluid ms-sm-4 me-sm-4 mb-0">
+          <a class="navbar-brand" href="{% url 'Homepage' %}">   
+              <img src="{% static 'image/DAASico.png' %}" width="24" height="26" class="d-inline-block align-top">  
+             <span style="color:white; font-size: 17px;">DAAS</span>
+        </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto ">
+              <li class="nav-item ps-3 mb-1 pt-2">
+                <a class="nav-link navtext " href="javascript:void(0)">Community <!--<span class="vertical"></span>--></a>
+              </li>
+              <!-- <li class="nav-item ps-3 mb-1 pt-2">
+                <a class="nav-link navtext " href="{% url 'faqs:faqs' %}">FAQs<!--<span class="vertical"></span>--></a>
+              </li>
+              <li class="nav-item ps-3 mb-1 pt-2">
+                <a class="nav-link navtext" href="{% url 'commentary:comment' %}">Commentary <!--<span class="vertical"></span>--></a>
+              </li>
+              <li class="nav-item ps-3 mb-1 pt-2">
+                <a class="nav-link navtext " href="{% url 'commentary:comment' %}">Report</a>
+              </li> -->
+            </ul> 
+            <form class="d-flex ">
+              {% if request.user.is_authenticated %}
+              <div class="personal  ">
+                <div class="btn-group  ">
+                  <button type="button" class="btn btn-primary  name " data-bs-toggle="dropdown" aria-expanded="false" style="display:block;border-radius: 50%; width: 30%;">
+                    
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-md-end">
+                    <h6 class="ps-2">
+                      {{request.user.first_name}} {{request.user.last_name}}
+                  </h6>
+                    <li style="border-top: 2px solid rgba(0,0,0,0.5); ;">
+                      <span class="material-icons icon ">person</span>
+                        <a class="" href="{% url 'user_DAAS:view_profile' %}">View Profile</a>
+                   </li>
+                    <li>
+                     
+                      <span class="material-icons">translate</span>
+                        <a class="" href="#">Language</a>
+                  </li>
+                    <li style="border-top: 2px solid rgba(0,0,0,0.5); ;">
+                      <span class="material-icons">logout</span>
+                        <a class="" href="{% url 'user_DAAS:signout' %}">Logout</a>
+                  </li>
+                  </ul>
+                </div>
+                <!-- <div class="dropdown">
+                  <button class="btn btn-primary dropdown-toggle name" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    
+                  </button>
+                  <ul class="dropdown-menu dropstart" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">View Profile</a></li>
+                    <li><a class="dropdown-item" href="#">Language</a></li>
+                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                  </ul>
+                </div> -->
+                
+                <!-- <div class="profileImage"></div> -->
+                <span class="font-weight-bold" style="font-size: 10px; color: red; display: none;" id="first">{{request.user.first_name}}</span> 
+                <span class="font-weight-bold" style="font-size: 10px; color: red; display: none;" id="last">{{request.user.last_name}}</span>
+                
+              </div>              
+                         
+              <!-- <a href="{% url 'user_DAAS:signout' %}" class="btn btn-danger me-3 rounded size" id="logout" style="font-size: 14px;">Logout</a> -->
+              {% else %}
+              <a href="{% url 'user_DAAS:signin' %}" class="btn btn-primary me-2 rounded size" id="login" style="font-size: 14px;">Login</a>
+              <a href="{% url 'user_DAAS:register' %}" class="btn btn-danger me-0 rounded size" id="signup" style="font-size: 14px;">Sign Up</a>
+              {% endif %}
+                <!-- <span class="pipe me-3"></span>
+                <div class="dropdown" >
+                    <button class="btn btn-outline-warning dropdown-toggle rounded langsize " type="button" id="lang" data-bs-toggle="dropdown" style="font-size: 14px;">
+                      <img src="{% static 'img/america.png' %}" alt="" class="img-fluid icon">  
+                      English(US)
+                    </button>
+                    
+                    <ul class="dropdown-menu bg-dark" >
+                      <li><a class="dropdown-item bg-dark text-light " href="#"><img src="{% static 'img/ethiopia.png' %}" alt="" class="img-fluid icon">  Amharic</a></li>
+                    </ul>
+                  </div> -->
+            </form>
+          </div>
+        </div>
+    </nav>
+  
+    <section id="Report-2" class="report-2" style="display: block;">
+        <div class="container">
+          <div class="text-center text-light mt-5">
+                <h4>Find out available village information with the aid of the advisor</h4>
+          </div>
+            <form action="">
+                <div class="select_box mx-auto pt-5">
+                    <div class="text-center p-1">
+                    <label for="village" class="text-light">Select village</label>
+                    </div>
+                    <select class="form-select text-light" id="village">
+                      <option class="text-dark">Village 1</option>
+                      <option class="text-dark">Village 2</option>
+                      <option class="text-dark">Village 3</option>
+                    </select>
+                </div>
+                <div class=" pt-3 ps-4">
+                    <h5 class="text-light">Select data of choice</h5>
+                </div>
+                <div class="row ps-5 pt-4">
+                    <div class="col-6   text-light">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="sow">
+                            <label class="form-check-label" for="sow">
+                              Sowing Date
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-6   text-light">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="harvest">
+                            <label class="form-check-label" for="harvest">
+                              Harvesting Date
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ps-5 pt-4">
+                    <div class="col-6   text-light">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="fert">
+                            <label class="form-check-label" for="fert">
+                              Fertilizer Recommendation
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-6   text-light">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="pest">
+                            <label class="form-check-label" for="pest">
+                              Pesticide Recommendation
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-5">
+                    <div class="col-11 text-center">
+                        <button class="btn btn-brown  w-50" id="produce" value="Submit" type="button">Produce Report</button>
+                    </div>
+                </div>
+                <!-- <div>
+                    <select class="form-select w-25 mx-auto text-secondary" aria-label="Default select example"  style="background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba( 0, 0, 0, 0.4));;">
+                        <option selected>for example: xyz</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                </div> -->
+                <!-- <div class="text-center pt-5">
+                    <div class="dropdown" >
+                        <button class="btn text-light dropdown-toggle w-25" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" style="border: 2px solid red ;">
+                        for example: xyz
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#">Village 1</a></li>
+                        <li><a class="dropdown-item" href="#">Village 2</a></li>
+                        <li><a class="dropdown-item" href="#">Village 3</a></li>
+                        </ul>
+                    </div>
+                </div> -->
+            </form>
+        </div>
+    </section>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<!-- <script src="{% static 'js/report-final.js' %}"></script> -->
+</body>
+</html>

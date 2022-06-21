@@ -266,3 +266,6 @@ def get_redirect_if_exists(request):
 		if request.GET.get("next"):
 			redirect = str(request.GET.get("next"))
 	return redirect
+
+def view_profile(request):
+    return render(request, "html/user_profile.html")

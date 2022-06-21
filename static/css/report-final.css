@@ -4,16 +4,22 @@
     box-sizing: border-box;
 }
 body{
+    
     width: 100%;
     height: auto;
     overflow-x: hidden;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    background:linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba( 0, 0, 0, 0.2)),url(../img/report.jpg) no-repeat center;
+    background:linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba( 0, 0, 0, 0.2)),url(../images/report.jpg) no-repeat center;
     /* width: 100vw; */
     background-size: cover;
     height: 100vh;
+}
+
+.footer {
+    width: 100%;
 }
 .nav-pills .active {
     background-color: gray !important;
@@ -32,7 +38,7 @@ body{
     height: 500px;
     width: 800px;
     border-radius: 20px;
-    display: block;
+    display: none;
     box-shadow: 15px 7px 14px 1px rgba(0,0,0,0.75);
     background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba( 0, 0, 0, 0.4));
 }
@@ -45,7 +51,8 @@ body{
     width: auto;
     /* border: 1px solid rgb(156, 156, 156); */
     border-radius: 20px;
-    display: block;
+    display: none;
+    padding: 20px;
     box-shadow: 15px 7px 14px 1px rgba(0,0,0,0.75);
     background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba( 0, 0, 0, 0.4));
     
