@@ -1,8 +1,10 @@
 {% extends "layout.html" %}
 {% load static %}
-
+{% block link%}
+<link href="{%static 'css/report-final.css' %}" rel="stylesheet">
+{% endblock %}
 {% block body %}
-<div class="container main">
+{% comment %} <div class="container main">
     <div>
         <h4>Report result</h4>
     </div>  
@@ -48,5 +50,54 @@
         
    
     
-</div>
+</div> {% endcomment %}
+
+<section id="Report-3" class="report-final reportf" style="display: block; margin: auto; align-items:center;">
+    <div class="container">
+        <div class="text-center">
+            <h3 class="text-light pt-4">Results</h3>
+        </div>
+        <div class="text-center pt-3">
+            <h5 class="text-light">Village Selected</h5>
+            <div class="village mx-auto mt-4 pt-1" >
+                <h6 class="text-light">{{ district }}</h6>
+            </div>
+
+        </div>
+        <div class="mt-4 text-center">
+            <h5 class="text-light">Data</h5>
+        </div>
+        <div class="row ps-3 mt-5" style="align-items:center;">
+            <div class="col-3 text-light" style="border-right:1px solid  rgb(113, 112, 112);">
+                <h6>Sowing Date</h6>
+                <div class="result-container mt-4">
+                    {{ sowing }}
+                </div>
+            </div>
+            <div class="col-3 text-light" style="border-right:1px solid  rgb(113, 112, 112);">
+                <h6>Harvesting Date</h6>
+                <div class="result-container mt-4">
+                    {{ harvesting }}
+                </div>
+            </div>            
+            <div class="col-3 text-light">
+                <h6>Pesticide Recommendation</h6>
+                <div class="result-container mt-4">
+                    {{ locust }}
+                </div>
+            </div>
+        </div>
+      <div class="row mt-5">
+        <div class="col-6">
+          <a class="btn btn-primary w-50" href=''>Submit</a>
+        </div>
+        <div class="col-6 text-end">
+          <a class="btn btn-success w-50" href="">Produce another report</a>
+        </div>
+      </div>
+    </div>
+</section>
+{% endblock %}
+{% block scripts %}
+{% comment %} <script src="{% static 'js/report-final.js' %}"></script> {% endcomment %}
 {% endblock %}

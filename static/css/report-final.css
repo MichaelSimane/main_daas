@@ -1,0 +1,107 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba( 0, 0, 0, 0.2)),url(../img/report.jpg) no-repeat center;
+    /* width: 100vw; */
+    background-size: cover;
+    height: 100vh;
+}
+.nav-pills .active {
+    background-color: gray !important;
+  }
+  .report-1{
+    height: 250px;
+    width: 500px;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    box-shadow: 15px 7px 14px 1px rgba(0,0,0,0.75);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba( 0, 0, 0, 0.3));
+}
+.report-2{
+    height: 500px;
+    width: 800px;
+    border-radius: 20px;
+    display: block;
+    box-shadow: 15px 7px 14px 1px rgba(0,0,0,0.75);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba( 0, 0, 0, 0.4));
+}
+.report-2 .btn{
+    border-radius: 20px;
+}
+
+.report-final{
+    height: auto;
+    width: auto;
+    /* border: 1px solid rgb(156, 156, 156); */
+    border-radius: 20px;
+    display: block;
+    box-shadow: 15px 7px 14px 1px rgba(0,0,0,0.75);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba( 0, 0, 0, 0.4));
+    
+}
+.village{
+    height: 30px;
+    width: 300px;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba( 0, 0, 0, 0.3));;
+    border: 0.3px solid  rgb(156, 156, 156);
+    
+}
+.result-container{
+    height: 100px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:1px solid  rgb(182, 182, 182) ;
+    border-radius: 20px;
+    background-color: transparent;
+}
+/* .reportf .btn{
+    border-radius: 10px;
+} */
+.select_box{
+    width: 200px;
+    overflow: hidden;
+    /* border: 1px solid #000; */
+    position: relative;
+    /* padding: 10px 0; */
+}
+  .select_box:after{
+    width: 0; 
+    height: 0; 
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid white;
+    position: relative;
+    outline: none;
+    bottom: 15px;
+    left: 85%;
+    content: "";
+    z-index: 98;
+}
+  .select_box select{
+    width: 220px;
+    border: 0;
+    position: relative;
+    z-index: 99;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba( 0, 0, 0, 0.4));
+}
+  .form-select:focus {
+    border: none !important; 
+    outline: none !important;
+    box-shadow: none !important;
+}
+.view{
+    display: block;
+}

@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block body %}
-<div class="container main">
+{% comment %} <div class="container main">
     <div>
         <h4>Generate a Report</h4>
     </div>   
@@ -53,5 +53,82 @@
         
     </div>    
     
-</div>
+</div> {% endcomment %}
+
+<section id="Report-2" class="report-2" style="display: block;">
+    <div class="container">
+      <div class="text-center text-light mt-5">
+            <h4>Find out available village information with the aid of the advisor</h4>
+      </div>
+      <form action="{% url 'generate' %}" method="post">
+        {% csrf_token %}
+            <div class="select_box mx-auto pt-5">
+                <div class="text-center p-1">
+                <label for="village" class="text-light">Select village</label>
+                </div>
+                <select class="form-select text-light" style="color: black;" name="District" id="village">
+                    {% for district in districts %}
+                        <option style="color: black;" value="{{ district.Name }}">{{ district.Name }}</option>           
+                    {% endfor %} 
+                </select>
+            </div>
+            <div class=" pt-3 ps-4">
+                <h5 class="text-light">Select data of choice</h5>
+            </div>
+            <div class="row ps-5 pt-4">
+                <div class="col-6   text-light">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="sow">
+                        <label class="form-check-label" for="sow">
+                          Sowing Date
+                        </label>
+                    </div>
+                </div>
+                <div class="col-6   text-light">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="harvest">
+                        <label class="form-check-label" for="harvest">
+                          Harvesting Date
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row ps-5 pt-4">                
+                <div class="col-6   text-light">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="pest">
+                        <label class="form-check-label" for="pest">
+                          Pesticide Recommendation
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row  mt-5">
+                <div class="col-11 text-center">
+                    <button class="btn btn-brown  w-50" id="produce" value="Submit" type="submit">Produce Report</button>
+                </div>
+            </div>
+            <!-- <div>
+                <select class="form-select w-25 mx-auto text-secondary" aria-label="Default select example"  style="background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba( 0, 0, 0, 0.4));;">
+                    <option selected>for example: xyz</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+            </div> -->
+            <!-- <div class="text-center pt-5">
+                <div class="dropdown" >
+                    <button class="btn text-light dropdown-toggle w-25" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" style="border: 2px solid red ;">
+                    for example: xyz
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">Village 1</a></li>
+                    <li><a class="dropdown-item" href="#">Village 2</a></li>
+                    <li><a class="dropdown-item" href="#">Village 3</a></li>
+                    </ul>
+                </div>
+            </div> -->
+        </form>
+    </div>
+</section>
 {% endblock %}

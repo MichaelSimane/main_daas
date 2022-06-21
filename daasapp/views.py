@@ -10,6 +10,11 @@ from dateutil.relativedelta import relativedelta
 import json
 import folium
 import geocoder
+from selenium import webdriver
+from django.contrib.auth import authenticate, login, logout
+from django.forms import ValidationError
+from .models import DAAS_User
+from .forms import UserLogin, UserRegister
 # Create your views here.
 date = datetime.datetime.now()
 def generate(request):    
@@ -69,6 +74,8 @@ def chat(request):
     replys = requests.get("http://127.0.0.1:8080/dbapi/replymessage")
     if request.method == "POST":
         message = request.POST.get('comment')
+        reply = request.POST.get('reply')
+        postid = request.POST.get('parentSno')
         # comment = request.POST['comment'] 
         # reply =request.POST.get('reply')      
         # reply_comment = request.POST['reply']
@@ -80,11 +87,12 @@ def chat(request):
         value1 = json.dumps(data)
 
         value2 = {
-            "PostMessage": 2,
-            "reply": message,            
+            "PostMessage": postid,
+            "reply": reply,   
+            "date": date.now         
         }
         requests.post("http://127.0.0.1:8080/dbapi/postmessage", data=value1) 
-        # requests.post("http://127.0.0.1:8080/dbapi/replymessage", data=value2)      
+        requests.post("http://127.0.0.1:8080/dbapi/replymessage", data=value2)      
         print(requests.post("http://127.0.0.1:8080/dbapi/postmessage", data=data) )
         messages.success(request, "Your comment has been posted successfully")
         
@@ -94,6 +102,8 @@ def chat(request):
             "posts": posts.json,
             "replys": replys.json
         })
+
+
 
 def contact(request):
     if request.method == "POST":
@@ -108,8 +118,8 @@ def contact(request):
         return redirect(Homepage)
     return render(request, "contact.html")
 
-def login(request):
-    return render(request, "login.html")
+# def login(request):
+#     return render(request, "login.html")
 
 def report(request, sowing, harvesting, locust, district):
     tmean = float(requests.get(f"http://127.0.0.1:8080/dbapi/weatherdetail/{date.year}/{date.month}/{date.day}/{district}").text)
@@ -140,8 +150,8 @@ def report(request, sowing, harvesting, locust, district):
             "district": district
         })   
 
-def signup(request):
-    return render(request, "signup.html")
+# def signup(request):
+#     return render(request, "signup.html")
 
 def map(request):    
     location = geocoder.osm('Debre Elias')
@@ -158,3 +168,101 @@ def map(request):
     return render(request, "map.html", {
         "m": m
     })
+
+# def translate(request):
+    
+
+#     driver = webdriver.Firefox()
+#     driver.get("http://127.0.0.1:8000/daasapp/Homepage")
+
+#     html = driver.page_source   
+
+#     url = "https://microsoft-translator-text.p.rapidapi.com/translate"
+
+#     querystring = {"to[0]":"am","api-version":"3.0","profanityAction":"NoAction","textType":"plain"}
+
+#     payload = [{"Text": html}]
+#     headers = {
+#         "content-type": "application/json",
+#         "X-RapidAPI-Key": "269f62f524msh775ebacecb3deb0p14e9e2jsn71201fd0fd95",
+#         "X-RapidAPI-Host": "microsoft-translator-text.p.rapidapi.com"
+#     }
+
+#     response = requests.request("POST", url, json=payload, headers=headers, params=querystring)
+
+#     print(response.text)
+
+def register(request,*args, **kwargs):
+    user = request.user
+    if user.is_authenticated:
+        return redirect("home:home")
+    context={}
+    # if request.method == "GET":
+
+    if request.POST:
+        form = UserRegister(request.POST)
+        
+        if form.is_valid():
+            form.save()
+            email = form.cleaned_data.get('email').lower()
+            raw_password = form.cleaned_data.get('password1')
+            user1 = authenticate(email = email, password = raw_password)
+            login(request, user1)
+            destination = kwargs.get("next")
+            if destination:
+                return redirect(destination)
+            return redirect("Homepage")
+            # passwordConf = request.POST['passwordConf']
+            # user = DAAS_User( first_name=first_name, last_name=last_name, phone_number = phone_number, email=email,  password = password)
+            # user.save()
+            # return redirect("home:home")
+        else:
+            context["register_form"]=form
+            
+    else:
+        form = UserRegister()
+        context['register_form'] = form
+    return render(request, "signup.html", context)
+
+    # signin
+
+def signin(request):
+    context = {}
+    user = request.user
+    if user.is_authenticated:
+        return redirect("Homepage")
+    
+    destination = get_redirect_if_exists(request)
+    print("destination: " + str(destination))
+
+
+    if request.POST:
+        form = UserLogin(request.POST)
+        if form.is_valid():
+            email = request.POST['email']
+            password = request.POST['password']
+            user = authenticate(email=email, password=password)
+
+            if user is not None:
+                login(request, user)
+                # return render(request, "html/logout.html",context)
+                return redirect("Homepage")
+    else: 
+        form = UserLogin()
+
+    context["login_form"]=form
+    return render(request, "login2.html", context)   
+        # return render(request, "html/signin.html")
+
+def signout(request):
+    logout(request)
+    # return render(request, "html/signin.html")
+    return redirect("Homepage")
+
+
+def get_redirect_if_exists(request):
+	redirect = None
+	if request.GET:
+		if request.GET.get("next"):
+			redirect = str(request.GET.get("next"))
+	return redirect

@@ -24,10 +24,10 @@
                 <b> mike </b> <span class="badge badge-secondary ">{{ post.date| naturaltime }}</span>
                 <div>{{ post.message }}</div>
                 <div class="reply mx-0">            
-                    <button class="btn btn-sm btn-primary" onclick="reply()" id="reply{{post.id}}" type="button" data-toggle="collapse" data-target="#replyBox{{comment.sno}}" aria-expanded="false" aria-controls="replyBox{{comment.sno}}">
+                    <button class="btn btn-sm btn-primary" onclick="" id="reply{{post.id}}" type="button" data-toggle="collapse" data-target="#replyBox{{comment.sno}}" aria-expanded="false" aria-controls="replyBox{{comment.sno}}">
                         Reply
                     </button>
-                    <div class="collapse" id="replyBox">
+                    <div class="collapse" id="replyBoxreply{{post.id}}">
                         <div class="card card-body my-2">
                             <form action="{% url 'chat' %}" method="post">
                                 {% csrf_token %}
@@ -37,7 +37,7 @@
                                     <input type="hidden" name="parentSno" value="{{post.id}}">
                                 </div>
                                 <!-- <input type="hidden" name="postSno" value="{{post.id}}"> -->
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary" id="btn{{post.id}}">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -54,23 +54,30 @@
 {% comment %} var replybtn = document.getElementByClassName("btn");
 replybtn.id
 document.getElementById("myBtn").onclick = function() {myFunction()}; {% endcomment %}
-function reply(){
-    var replybox = document.getElementById('replyBox');
-    console.log(replybox.className);
-    if (replybox.className  == "collapse"){
-        replybox.className  = 'uncollapse';
-    }else if(replybox.className  == "uncollapse"){
-        replybox.className  = 'collapse'
-    } 
-}
-{% comment %} 
-document.addEventListener("click", event => {
+{% comment %} function reply(){
+    {% for post in posts %}
+        var btn = document.getElementById(('btn' + {{post.id}}))
+        var box = document.getElementById("reply"+{{post.id}});
+        console.log(box.id + "and" + btn.id)
+        if (box.className  == "collapse"){
+            box.className = 'uncollapse';
+        }else if(box.className  == "uncollapse"){
+            box.className  = 'collapse'
+        } 
+    {% endfor %}
+}  {% endcomment %}
+
+ document.addEventListener("click", event => {
     const element = event.target;
-    if (element.className  == "collapse"){
-        element.className  = 'uncollapse';
-    }else if(element.className  == "uncollapse"){
-        element.className  = 'collapse'
+    console.log(element.id)
+    {% comment %} console.log(box.id {% endcomment %}
+    var box = document.getElementById("replyBox" + element.id);
+    console.log(box.id)
+    if (box.className  == "collapse"){
+        box.className = 'uncollapse';
+    }else if(box.className  == "uncollapse"){
+        box.className  = 'collapse'
     } 
-}); {% endcomment %}
+});  
 
 {% endblock %}

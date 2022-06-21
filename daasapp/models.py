@@ -1,66 +1,80 @@
 # from django.db import models
+from django.db import models
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+# Create your models here.
+class DAAS_Manager(BaseUserManager):
+    def create_user(self, email, first_name, last_name, phone_number, password=None):
+        if not email:
+            raise ValueError("email is required. ")
+        if not first_name:
+            raise ValueError("First Name  is required. ")
+        if not last_name:
+            raise ValueError("Last Name  is required. ")
+        # if not phone_number:
+        #     raise ValueError("Phone Number is required. ")
+      
+        # if not passwordConf:
+        #     raise ValueError("Password confirmation is required. ")
+        user = self.model(
+            email = self.normalize_email(email),
+            first_name = first_name,
+            last_name = last_name,
+            phone_number = phone_number,
+        )
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+        # user.is_admin = False
+        # user.is_staff = False
+        # user.is_active = True
+        # user.is_superuser = False
+        # user.set_password(password)
+        # user.save(using=self._db)
+        # return user
+    def create_superuser(self,email, first_name,last_name, phone_number, password=None):
+        user = self.create_user(
+            email= self.normalize_email(email),
+            first_name = first_name,
+            last_name = last_name,
+            phone_number = phone_number,
+            password = password,
+            # passwordConf = passwordConf 
+           
 
-# # Create your models here.
-# class User(models.Model):
-#     # user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
-#     First = models.CharField(max_length=64)
-#     Last = models.CharField(max_length=64)
-#     Email = models.CharField(max_length=128, unique=True)
-#     Phone = models.IntegerField(unique=True) 
-#     boolChoice = (
-#         ("M","Male"),("F","Female")
-#         )
-#     Gender = models.CharField(max_length = 1,choices=boolChoice)
+        )
+        
+        user.is_admin = True
+        user.is_staff = True
+        user.is_active = True
+        user.is_superuser = True
+        user.save(using=self._db)
+        return user
 
-#     def __str__(self):
-#         return f"{self.id} {self.First} {self.Last} {self.Email} {self.Phone} {self.Gender}"
+class DAAS_User(AbstractBaseUser):
+    
+    first_name = models.CharField(verbose_name="First Name", max_length=100)
+    last_name = models.CharField(verbose_name="Last Name",max_length=100)
+    phone_number = models.IntegerField(verbose_name="Phone Number", unique=True)
+    email = models.EmailField(verbose_name="Email Address",max_length=200,  unique=True)
+    date_joined = models.DateField(verbose_name="Date joined", auto_now_add=True)
+    last_login = models.DateTimeField(verbose_name="Last login", auto_now=True)
+    is_admin = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    is_superuser = models.BooleanField(default=False)
 
-# # class Village(models.Model):
-# #     Name = models.CharField(max_length=64)
-# #     Latitude = models.FloatField()
-# #     Longitude = models.FloatField()
+    # region = models.CharField(max_length=15)
+    # if is_admin == False:
+    #     USERNAME_FIELD = 'phone_number'
+    #     REQUIRED_FIELDS = [   'first_name', 'last_name', 'password', 'email']
+    # else:
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = [  'phone_number', 'first_name', 'last_name', 'password']
+    objects = DAAS_Manager()
 
-# #     def __str__(self):
-# #         return f"{self.id} {self.Name} {self.Latitude} {self.Longitude}"
-
-# class District(models.Model):
-#     Name = models.CharField(max_length=64)
-#     Latitude = models.FloatField()
-#     Longitude = models.FloatField()
-
-#     def __str__(self):
-#         return f"{self.id} {self.Name} {self.Latitude} {self.Longitude}"
-
-
-# class Weather(models.Model):
-#     # user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
-#     year = models.IntegerField(max_length=64)
-#     month = models.IntegerField(max_length=64)
-#     day = models.IntegerField(max_length=128, unique=True)
-#     tmin = models.FloatField() 
-#     tmax = models.FloatField() 
-#     rain = models.FloatField() 
-#     # district = models.ForeignKey(District, on_delete=models.CASCADE)
-
-#     def __str__(self):
-#         return f"{self.id} {self.year} {self.month} {self.day} {self.tmin} {self.tmax} {self.rain} {self.district}"
-
-
-# class Farmer(models.Model):
-#     Land_size = models.FloatField()
-#     Wheat_variety = models.CharField(max_length=20)
-#     Fertilizer_type = models.CharField(max_length=30)
-#     Fertilizer_amount = models.FloatField()
-#     Topography = models.CharField(max_length=30)
-
-#     def __str__(self):
-#         return f"{self.id} {self.Land_size} {self.Wheat_variety} {self.Fertilizer_type} {self.Fertilizer_amount} {self.Topography}"
-
-# class AnalyzedData(models.Model):
-#     SowingDate = models.CharField(max_length=20)
-#     HarvestingDate = models.CharField(max_length=20)
-#     pesticideRecommendation = models.CharField(max_length=30)
-#     DataPublished = models.DateField()
-
-#     def __str__(self):
-#         return f"{self.id} {self.SowingDate} {self.HarvestingDate} {self.pesticideRecommendation} {self.DataPublished}"
+    def __str__(self):
+        return self.first_name + " " + self.last_name
+    def has_perm(self, perm, obj=None):
+        return True
+    def has_module_perms(self, app_label):
+        return True 

@@ -73,6 +73,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'DAAS.wsgi.application'
+AUTH_USER_MODEL = "daasapp.DAAS_User"
 
 
 # Database
@@ -126,6 +127,8 @@ LANGUAGE = (
     ('en', _('English')),
 
 )
+
+
 
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale')

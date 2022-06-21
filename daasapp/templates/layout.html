@@ -84,7 +84,8 @@
     </div>
 </nav>
     
-    
+{% block body2 %}
+{% endblock %}
   <div class="container" id="main">
       {% block body%}
       {% endblock %}
@@ -159,9 +160,10 @@
     });
     </script> {% endcomment %}
   <script type='text/javascript'> 
-    {% block script%}
+    {% block script %}
     {% endblock %}
   </script>
-  
+  {% block scripts %}
+  {% endblock %}
 </body>
 </html>

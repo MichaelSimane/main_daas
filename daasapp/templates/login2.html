@@ -1,0 +1,60 @@
+{% extends "layout2.html" %}
+{% load static %}
+{% block title %}
+<title>Sign in</title>
+{% endblock %}
+    {% block user%}
+        <div class="col-md-6 " style="display: visible;" id="login">
+            <form action="{% url 'signin' %}" class="form-container pt-2" method="POST">
+                    {%csrf_token%} 
+                    {% if login_form.non_field_errors %}
+                        {% for err in login_form.non_field_errors %}
+                            <p class="pt-3"style="color:red ;">
+                                <span><i class="bi bi-exclamation-lg" style="color:red ;" ></i> {{err}}</span>
+                            </p> 
+                        {% endfor %}
+                    {% endif %}
+                    <!-- {{login_form}} -->
+                <h1 class="ms-0">Login</h1>
+                <h6>New user? <a href="{% url 'register' %}">Create an account</a></h6>
+                <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label email">Email</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+                
+                </div>
+                <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label pass">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                </div>
+                <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label check" for="exampleCheck1">Remember Me</label>
+                </div>
+                <button type="submit" class="btn  btn-success w-100" value="Submit">SUBMIT</button>
+                <h6 class="text-center pt-3" style="color:white;">Forgot password?<a href="{% url 'password_reset' %}">click here</a></h6>
+                <div class="divider d-flex align-items-center my-3"> 
+                <p class="text-center fw-bold mx-3 mb-0 " style="color: white;">OR</p>
+                </div>
+                <button type="submit" class="btn  btn-success btn-block w-100" style="background-color: red;">
+                <i class="fab fa-google me-2"></i> Sign in with google
+                </button>      
+                    <!-- <p>
+                        <span>{{login_form.email.label}}</span>
+                        <span>{{login_form.email}}</span>
+                    </p>
+                    <p>
+                        <span>{{login_form.password.label}}</span>
+                        <span>{{login_form.password}}</span>
+                    </p> -->
+
+                    <!-- {% for error in login_form.errors %}
+                        <p style="color:red ;">
+                            {{error}}
+                        </p>
+                    {%endfor%} -->
+                
+                
+
+            </form>
+        </div>
+{% endblock %}
